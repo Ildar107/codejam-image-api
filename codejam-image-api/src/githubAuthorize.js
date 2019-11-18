@@ -13,7 +13,7 @@ export default class Authorize {
   }
 
   signIn() {
-    document.location = `https://github.com/login/oauth/authorize?client_id=${this.clientId}&redirect_uri=http%3A%2F%2Flocalhost%3A5500%2Fcodejam-image-api%2Findex.html`;
+    document.location = `https://github.com/login/oauth/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}`;
   }
 
   async getAccessToken(code) {
