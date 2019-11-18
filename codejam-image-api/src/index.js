@@ -1,5 +1,5 @@
-import Slider from "./slider.js"
-import Authorize from "./githubAuthorize.js"
+import Slider from './slider.js'
+import Authorize from './githubAuthorize.js'
 
 let matrixSize = 1;
 let instrument = 'pencil';
@@ -12,19 +12,18 @@ let koff = 1;
 let isImageLoaded = localStorage.getItem('isImageLoaded') || false;
 let canvasSize = localStorage.getItem('canvasSize') || maxCanvasSize;
 let inputRangeValue = localStorage.getItem('inputRangeValue') || sizeSlider.maxRealValue;
-
-let auth = new Authorize();
+const auth = new Authorize();
 const query = auth.parseQueryString(document.location.search.substring(1));
 if(query.error) {
     alert('Error returned from authorization server: '+ query.error);
 }
-if(!query.code)
-    auth.signIn();
-else
-    auth.getAccess_token(query.code);    
-
+if(query.code)
+    auth.getAccess_token(query.code);
 
 window.onload = function() {
+
+    const authorizationBtn = document.getElementById('authorization');
+    authorizationBtn.innerHTML = 'Sign in';
     const smallMatrixChecker = document.getElementById('small');
     const largeMatrixChecker = document.getElementById('large');
     const defaultMatrixChecker = document.getElementById('default');
@@ -58,6 +57,18 @@ window.onload = function() {
             colorPicker.click();
         }
       };
+
+    authorizationBtn.addEventListener('click', (e) => {
+        
+        const query = auth.parseQueryString(document.location.search.substring(1));
+        if(query.error) {
+            alert('Error returned from authorization server: '+ query.error);
+        }
+        if(!query.code)
+            auth.signIn();
+        else
+            auth.signOut();
+    });
 
     inputColor.addEventListener('change', (e) => {
         color = inputColor.value;
@@ -190,7 +201,7 @@ window.onload = function() {
     });
     this.document.body.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('click', (e) => {
-        let ctx = canvas.getContext("2d");
+        let ctx = canvas.getContext('2d');
         if(instrument === 'color-picker') {
             const newColor = ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
             color = `rgba(${newColor[0]},${newColor[1]},${newColor[2]},${newColor[3]})`;
@@ -201,7 +212,7 @@ window.onload = function() {
         }
         if(instrument === 'grayscale') {
             if(!isImageLoaded) {
-                this.alert("Error! Please download image!");
+                this.alert('Error! Please download image!');
                 return;
             }
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -244,7 +255,7 @@ window.onload = function() {
 
 function draw(point) {
     const canvas = document.getElementById('work-canvas');
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     ctx.fillStyle = color;
     ctx.fillRect(point.x, point.y, matrixSize, matrixSize );
 }
@@ -256,7 +267,7 @@ function getRectStartPoint(point) {
 
 function fillCanvasZone(e){
     const canvas = document.getElementById('work-canvas');
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     const startPoint = getRectStartPoint(new Point(e.offsetX, e.offsetY));
     ctx.width = sizeSlider.getValue();
     ctx.height = sizeSlider.getValue();
@@ -312,7 +323,7 @@ function setPictureToCanvas(imgUrl)
 {
     const canvas = document.getElementById('work-canvas')
     imgUrl = imgUrl;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     const image = new Image();
     image.crossOrigin = 'annonymous';
     image.src = imgUrl;

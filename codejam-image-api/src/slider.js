@@ -26,12 +26,15 @@ export default class Slider {
         this.rangeBullet.style.left = (bulletPosition * 490) + "px";
     }
 
-    getValue = () => this.value;
+    getValue () { 
+        return this.value;
+    }
 
-    getRealValue = () => this.rangeSlider.value;
+    getRealValue() { 
+        this.rangeSlider.value;
+    }
 
-
-    onChange = (func) => {
+    onChange(func) {
         this.rangeSlider.addEventListener('input', func);
         return this;
     }
