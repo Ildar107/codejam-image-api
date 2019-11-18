@@ -6,7 +6,7 @@
 }
 
 .wrapper {
-    height: 100vh;
+    /* height: 120vh; */
     background-color: #fafafa;
 }
 
@@ -15,7 +15,7 @@ header {
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    height: 4%;
+    height: 3%;
     box-shadow: 6px 9px 9px -10px #a09494;
     padding: 10px;
     margin-bottom: 10px;
@@ -30,6 +30,11 @@ header {
     margin-right: auto;
 }
 
+.container {
+    display: flex;
+    padding-left: 152px;
+}
+
 canvas {
     box-shadow: 6px 9px 9px -10px #a09494;
     width: 512px;
@@ -38,13 +43,17 @@ canvas {
     color: #c5c2c2;
     background: #ffff;
     image-rendering: pixelated;
+    z-index: 11;
 }
 
-.container {
+.range-slider-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transform: rotate(90deg);
+    width: 150px;
+    z-index: 9;
 }
 
 .range-slider {
@@ -146,7 +155,7 @@ canvas {
 
 .rs-label-inner span {
     color: #fff;
-    transform: rotate(45deg);
+    transform: rotate(-45deg);
 }
 
 .whiteboard {
@@ -296,9 +305,9 @@ canvas {
     background-color: #fafafa;
 }
 
-/* .work-place__loader-picture{
+.work-place__loader-picture{
     margin-bottom: 20px;
-} */
+}
 
 .work-place__loader-picture-button {
     height: 43px;
@@ -354,6 +363,7 @@ canvas {
     width: 216px;
     box-shadow: 6px 9px 9px -10px #a09494;
     background: #ffff;
+    z-index: 10;
 }
 
 .switcher button {

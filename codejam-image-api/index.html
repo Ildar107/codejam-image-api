@@ -29,9 +29,9 @@
                             <img src="./images/pencil.png" alt="" class="instrument__pencil-icon">
                             <span class="pencil--title">Pencil</span>
                     </button>
-                    <button class="instrument__transform instrument__transform-disabled" disabled>
-                            <img src="./images/transform.png" alt="" class="instrument__transform-icon instrument__transform-icon-disabled">
-                            <span class="instrument__transform-title">Transform</span>
+                    <button class="instrument__grayscale" id="grayscale">
+                            <img src="./images/grayscale.svg" alt="" class="instrument__grayscale-icon">
+                            <span class="instrument__grayscale-title">Grayscale</span>
                     </button>
                 </div>
                 <div class="color">
@@ -60,34 +60,35 @@
                     <button class="work-place__loader-picture-button" id="load-image">Load</button>
                     <input class="work-place__loader-picture-text" type="text" placeholder="Insert town" id="search-input"/>
                 </div>
-                <canvas id="work-canvas" ></canvas>
                 <div class="container">
-                    <div class="range-slider">
-                        <span class="rs-label" id="rs-bullet">
-                            <span class = "rs-label-inner">
-                                <span id="rs-bullet-value">
-                                    32
+                    <canvas id="work-canvas" ></canvas>
+                    <div class="range-slider-container">
+                        <div class="range-slider">
+                            <span class="rs-label" id="rs-bullet">
+                                <span class = "rs-label-inner">
+                                    <span id="rs-bullet-value">
+                                        512
+                                    </span>
                                 </span>
                             </span>
-                        </span>
-                        <input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="4">
+                            <input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="4">
+                        </div>
                     </div>
-                    
                 </div>
             </div>
             <div class="change-tools">
                 <div class="switcher">
-                    <button class="switcher__matrix-small">
-                            <input class="switcher__matrix-small-radio" type="radio" id="small" name="switcher"></input>
-                            <label class="switcher__matrix-small-title" for="small">Matrix 4x4</label>
+                    <button class="switcher__matrix-1px">
+                            <input class="switcher__matrix-1px-radio" type="radio" id="default" name="switcher"></input>
+                            <label class="switcher__matrix-1px-title" for="default">Matrix 1x1</label>
                     </button>
-                    <button class="switcher__matrix-large">
-                            <input class="switcher__matrix-large-radio" type="radio" id="large" name="switcher"></input>
-                            <label class="switcher__matrix-large-title" for="large">Matrix 32x32</label>
+                    <button class="switcher__matrix-4px">
+                            <input class="switcher__matrix-4px-radio" type="radio" id="small" name="switcher"></input>
+                            <label class="switcher__matrix-4px-title" for="small">Matrix 4x4</label>
                     </button>
-                    <button class="switcher__image">
-                            <input class="switcher__image-radio" type="radio" id="default-image" name="switcher"></input>
-                            <label class="switcher__image-title" for="image">Image</label>
+                    <button class="switcher__matrix-32px">
+                        <input class="switcher__matrix-32px-radio" type="radio" id="large" name="switcher"></input>
+                        <label class="switcher__matrix-32px-title" for="large">Matrix 32x32</label>
                     </button>
                 </div>
             </div>
