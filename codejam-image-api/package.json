@@ -1,0 +1,26 @@
+{
+  "name": "codejam-image-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./scr/index.js",
+  "scripts": {
+    "lint" : "./node_modules/.bin/eslint ./src/index.js",
+    "dev": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "path": "^0.12.7",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "eslint-config-airbnb": "^18.0.1"
+  }
+}
