@@ -1,4 +1,5 @@
 import Slider from "./slider.js"
+import Authorize from "./githubAuthorize.js"
 
 let matrixSize = 1;
 let instrument = 'pencil';
@@ -11,6 +12,17 @@ let koff = 1;
 let isImageLoaded = localStorage.getItem('isImageLoaded') || false;
 let canvasSize = localStorage.getItem('canvasSize') || maxCanvasSize;
 let inputRangeValue = localStorage.getItem('inputRangeValue') || sizeSlider.maxRealValue;
+
+let auth = new Authorize();
+const query = auth.parseQueryString(document.location.search.substring(1));
+if(query.error) {
+    alert('Error returned from authorization server: '+ query.error);
+}
+if(!query.code)
+    auth.signIn();
+else
+    auth.getAccess_token(query.code);    
+
 
 window.onload = function() {
     const smallMatrixChecker = document.getElementById('small');
