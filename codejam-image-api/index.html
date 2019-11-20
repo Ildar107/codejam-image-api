@@ -13,25 +13,28 @@
         <header>
             <img src="./images/menu.png" alt="" class="header__expand-icon">
             <h1 class="header__title">CodeJam - Image - API</h1>
+            <img  class="header__avatar" id="avatar" />
+            <span class="header__login" id="login"></span>
+            <button class="header__authorization-button" id="authorization">Sign in</button>
         </header>
         <div class="whiteboard">
             <div class="tools">
                 <div class="instrument">
                     <button class="instrument__bucket" id="bucket">
-                        <img src="./images/bucket.png" alt="" class="instrument__bucket-icon">
+                        <img src="./images/bucket.png" alt="">
                         <span class="instrument__bucket-title">Paint bucket</span>
                     </button>
                     <button class="instrument__color-picker" id="color-picker">
-                            <img src="./images/choose-color.png" alt="" class="instrument__color-picker-icon">
-                            <span class="instrument__color-picker-title">Choose color</span>
+                            <img src="./images/choose-color.png" alt="">
+                            <span>Choose color</span>
                     </button>
                     <button class="instrument__pencil" id="pencil">
-                            <img src="./images/pencil.png" alt="" class="instrument__pencil-icon">
-                            <span class="pencil--title">Pencil</span>
+                            <img src="./images/pencil.png" alt="">
+                            <span>Pencil</span>
                     </button>
                     <button class="instrument__grayscale" id="grayscale">
-                            <img src="./images/grayscale.svg" alt="" class="instrument__grayscale-icon">
-                            <span class="instrument__grayscale-title">Grayscale</span>
+                            <img src="./images/grayscale.svg" alt="">
+                            <span>Grayscale</span>
                     </button>
                 </div>
                 <div class="color">
@@ -44,7 +47,7 @@
                             <div class="color__prev-circle circle" id="prev-color"></div>
                             <span class="color__prev-title">Prev color</span>
                     </button>
-                    <div class="menu-separater"></div>
+                    <div class="menu-separator"></div>
                     <button class="color__red" id="red">
                             <div class="color__red-circle circle"></div>
                             <span class="color__red-title">Red color</span>
@@ -58,7 +61,7 @@
             <div class="work-place">
                 <div class="work-place__loader-picture">
                     <button class="work-place__loader-picture-button" id="load-image">Load</button>
-                    <input class="work-place__loader-picture-text" type="text" placeholder="Insert town" id="search-input"/>
+                    <input class="work-place__loader-picture-text" type="text" placeholder="Enter town" id="search-input"/>
                 </div>
                 <div class="work-place__picture-container">
                     <canvas id="work-canvas" ></canvas>
