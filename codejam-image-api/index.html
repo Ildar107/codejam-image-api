@@ -60,7 +60,7 @@
                     <button class="work-place__loader-picture-button" id="load-image">Load</button>
                     <input class="work-place__loader-picture-text" type="text" placeholder="Insert town" id="search-input"/>
                 </div>
-                <div class="container">
+                <div class="work-place__picture-container">
                     <canvas id="work-canvas" ></canvas>
                     <div class="range-slider-container">
                         <div class="range-slider">
@@ -76,19 +76,19 @@
                     </div>
                 </div>
             </div>
-            <div class="change-tools">
-                <div class="switcher">
-                    <button class="switcher__matrix-1px">
-                            <input class="switcher__matrix-1px-radio" type="radio" id="default" name="switcher"></input>
-                            <label class="switcher__matrix-1px-title" for="default">Matrix 1x1</label>
+            <div class="tools">
+                <div class="brush">
+                    <button class="brush__button brush__button_default">
+                            <input class="brush__button-radio" type="radio" id="default-brush" name="tools"></input>
+                            <label class="brush__button-title" for="default-brush">x1 brush</label>
                     </button>
-                    <button class="switcher__matrix-4px">
-                            <input class="switcher__matrix-4px-radio" type="radio" id="small" name="switcher"></input>
-                            <label class="switcher__matrix-4px-title" for="small">Matrix 4x4</label>
+                    <button class="brush__button">
+                            <input class="brush__button-radio" type="radio" id="small-brush" name="tools"></input>
+                            <label class="brush__button-title" for="small-brush">x4 brush</label>
                     </button>
-                    <button class="switcher__matrix-32px">
-                        <input class="switcher__matrix-32px-radio" type="radio" id="large" name="switcher"></input>
-                        <label class="switcher__matrix-32px-title" for="large">Matrix 32x32</label>
+                    <button class="brush__button">
+                        <input class="brush__button-radio" type="radio" id="large-brush" name="tools"></input>
+                        <label class="brush__button-title" for="large-brush">x32 brush</label>
                     </button>
                 </div>
             </div>

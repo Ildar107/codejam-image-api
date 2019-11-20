@@ -1,14 +1,14 @@
 import Slider from "./slider.js"
 import Authorize from "./githubAuthorize.js"
 
-let matrixSize = 1;
+let brushSize = 1;
 let instrument = 'pencil';
 let colorPrev = localStorage.getItem('colorPrev') ||'#000';
 let color = localStorage.getItem('color') ||'#008000';
 const randomImageUrl = `https://api.unsplash.com/photos/random`;
 const sizeSlider = new Slider();
 const maxCanvasSize = 512;
-let koff = 1;
+let scale = 1;
 let isImageLoaded = localStorage.getItem('isImageLoaded') || false;
 let canvasSize = localStorage.getItem('canvasSize') || maxCanvasSize;
 let inputRangeValue = localStorage.getItem('inputRangeValue') || sizeSlider.maxRealValue;
@@ -18,16 +18,16 @@ const query = auth.parseQueryString(document.location.search.substring(1));
 if(query.error) {
     alert('Error returned from authorization server: '+ query.error);
 }
-if(!query.code)
-    auth.signIn();
-else
-    auth.getAccess_token(query.code);    
+// if(!query.code)
+//     auth.signIn();
+// else
+//     auth.getAccess_token(query.code);    
 
 
 window.onload = function() {
-    const smallMatrixChecker = document.getElementById('small');
-    const largeMatrixChecker = document.getElementById('large');
-    const defaultMatrixChecker = document.getElementById('default');
+    const smallBrushRadio = document.getElementById('small-brush');
+    const largeBrushRadio = document.getElementById('large-brush');
+    const defaultBrushRadio = document.getElementById('default-brush');
     const canvas = document.getElementById('work-canvas');
 
     const pencil = document.getElementById('pencil');
@@ -42,8 +42,10 @@ window.onload = function() {
     const inputColor = document.getElementById('input-color');
     const currColorContainer = document.getElementById('current-color-container');
     const loadImageButton = document.getElementById('load-image');
+
     currColor.style.backgroundColor = color;
     prevColor.style.backgroundColor = colorPrev;
+    
     let lastX = 0;
     let lastY = 0;
 
@@ -141,22 +143,22 @@ window.onload = function() {
         }
     });
 
-    smallMatrixChecker.parentElement.addEventListener('click', (e) => {
+    smallBrushRadio.parentElement.addEventListener('click', (e) => {
         if (e.returnValue) {
-            smallMatrixChecker.checked = true;
-            matrixSize = 4;
+            smallBrushRadio.checked = true;
+            brushSize = 4;
         }
     });
-    largeMatrixChecker.parentElement.addEventListener('click', (e) => {
+    largeBrushRadio.parentElement.addEventListener('click', (e) => {
         if (e.returnValue) {
-            largeMatrixChecker.checked = true;
-            matrixSize = 32;
+            largeBrushRadio.checked = true;
+            brushSize = 32;
         }
     });
-    defaultMatrixChecker.parentElement.addEventListener('click', (e) => {
+    defaultBrushRadio.parentElement.addEventListener('click', (e) => {
         if (e.returnValue) {
-            defaultMatrixChecker.checked = true;
-            matrixSize = 1;
+            defaultBrushRadio.checked = true;
+            brushSize = 1;
         }
     });
 
@@ -224,10 +226,10 @@ window.onload = function() {
     else {
         setPictureToCanvas();
     }
-    defaultMatrixChecker.checked = true;
+    defaultBrushRadio.checked = true;
     let isDrawing = false;
     pencil.click();
-     loadImageButton.addEventListener('click', getRandomImage);
+    loadImageButton.addEventListener('click', getRandomImage);
     sizeSlider.Init(inputRangeValue);
     canvasSize = sizeSlider.getValue();
     localStorage.getItem('canvasSize', canvasSize);
@@ -235,7 +237,7 @@ window.onload = function() {
         localStorage.setItem('inputRangeValue', sizeSlider.getRealValue());
         canvasSize = sizeSlider.getValue();
         localStorage.setItem('canvasSize', canvasSize);
-        koff = maxCanvasSize/canvasSize;
+        scale = maxCanvasSize/canvasSize;
         setPictureToCanvas(localStorage.getItem('currentImage'));
     })
     if(localStorage.getItem('currentImage'))
@@ -246,12 +248,12 @@ function draw(point) {
     const canvas = document.getElementById('work-canvas');
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = color;
-    ctx.fillRect(point.x, point.y, matrixSize, matrixSize );
+    ctx.fillRect(point.x, point.y, brushSize, brushSize );
 }
 
 function getRectStartPoint(point) {
     
-    return new Point(Math.floor(point.x/koff/matrixSize)*matrixSize, Math.floor(point.y/koff/matrixSize)*matrixSize);
+    return new Point(Math.floor(point.x/scale/brushSize)*brushSize, Math.floor(point.y/scale/brushSize)*brushSize);
 }
 
 function fillCanvasZone(e){
@@ -277,11 +279,11 @@ function fillCanvasZone(e){
         if(newSumColor !== sumColor) {
             continue;
         }
-        ctx.fillRect(point.x, point.y, matrixSize, matrixSize);
-        queue.push(new Point(point.x - matrixSize, point.y));
-        queue.push(new Point(point.x, point.y - matrixSize));
-        queue.push(new Point(point.x + matrixSize, point.y));
-        queue.push(new Point(point.x, point.y + matrixSize));
+        ctx.fillRect(point.x, point.y, brushSize, brushSize);
+        queue.push(new Point(point.x - brushSize, point.y));
+        queue.push(new Point(point.x, point.y - brushSize));
+        queue.push(new Point(point.x + brushSize, point.y));
+        queue.push(new Point(point.x, point.y + brushSize));
     }
   }
 
@@ -290,8 +292,8 @@ function drawWithAlgorithm(x1, y1, x2, y2) {
     const point2 = getRectStartPoint(new Point(x2, y2));
     const deltaX = Math.abs(point2.x - point1.x);
     const deltaY = Math.abs(point2.y - point1.y);
-    const signX = point1.x < point2.x ? matrixSize : -matrixSize;
-    const signY = point1.y < point2.y ? matrixSize : -matrixSize;
+    const signX = point1.x < point2.x ? brushSize : -brushSize;
+    const signY = point1.y < point2.y ? brushSize : -brushSize;
     let error = deltaX - deltaY;
     draw(point2);
     while(point1.x != point2.x || point1.y != point2.y) {

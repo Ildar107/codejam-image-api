@@ -30,7 +30,7 @@ header {
     margin-right: auto;
 }
 
-.container {
+.work-place__picture-container {
     display: flex;
     padding-left: 152px;
 }
@@ -198,7 +198,7 @@ canvas {
     line-height: 24px;
 }
 
-.instrument button span{
+.instrument button span {
     margin-right: auto;
 }
 
@@ -210,14 +210,12 @@ canvas {
 
 
 .instrument button:focus {
-    /* outline: 1px solid #00BCD4; */
     outline: 0;
     color:  #00BCD4;
 }
 
 .instrument button img {
     padding: 4px;
-    /* border-radius: 50%; */
     margin-right: 25px;
     box-shadow: 0px 0px 5px grey, 0px 0px 9px #75cdd48a;
     filter: opacity(80%);
@@ -349,16 +347,7 @@ canvas {
     box-shadow: -1px 3px 10px #14a8bb66;
 }
 
-.change-tools {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-basis: 30%;
-    background-color: #fafafa;
-}
-
-.switcher {
+.brush {
     border: 1px solid #c5c4c44f;
     width: 216px;
     box-shadow: 6px 9px 9px -10px #a09494;
@@ -366,7 +355,7 @@ canvas {
     z-index: 10;
 }
 
-.switcher button {
+.brush__button {
     display: flex;
     height: 63px;
     width: 100%;
@@ -384,32 +373,27 @@ canvas {
     line-height: 24px;
 }
 
-.switcher button:hover {
+.brush__button:hover {
     border-top: 1px solid #00BCD4;
     border-bottom: 1px solid #00BCD4;
     color:  #00BCD4;
 }
 
-.switcher button:focus {
+.brush__button:focus {
     outline: 0;
     color:  #00BCD4;
 }
 
-.switcher button input {
+.brush__button-radio {
     margin-right:  7px;
 }
 
-.switcher__image input[type=radio] + label:before {
-    visibility: hidden;
-}
-
-input[type=radio] {
-  /* Hide original inputs */
+.brush__button-radio {
   visibility: hidden;
   position: absolute;
 }
 
-input[type=radio] + label:before {
+.brush__button-radio + label:before {
   height:12px;
   width:12px;
   margin-right: 12px;
@@ -420,28 +404,23 @@ input[type=radio] + label:before {
   box-shadow: -1px 1px 5px 0px grey;
 }
 
-input[type=radio]:checked + label:before {
+.brush__button-radio:checked + label:before {
   background:#00BCD4;
 }
 
-/* CUSTOM RADIO AND CHECKBOX STYLES */
-input[type=radio] + label:before{
+.brush__button-radio + label:before {
   border-radius:50%;
-}
-input[type=checkbox] + label:before{
-  border-radius:2px;
 }
 
 .selected-button {
     color: #00BCD4 !important;
-    /* outline: 1px solid #00BCD4; */
 }
 
 .instrument__transform.instrument__transform-disabled {
     color: #908d8d4d;
 }
 
-.instrument .instrument__transform-icon-disabled{
+.instrument .instrument__transform-icon-disabled {
     filter: opacity(23%);
 }
 
